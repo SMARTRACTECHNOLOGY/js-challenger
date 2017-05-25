@@ -15,7 +15,28 @@
       */
 
       class Counter {
-        // Add code
+				constructor () {
+					this.count = 0;
+					this.step = 1;
+				}
+
+				increment () {
+					this.count += this.step;
+
+					return this;
+				}
+
+				decrement () {
+					this.count -= this.step;
+
+					return this;
+				}
+
+				step (step) {
+					this.step = step;
+
+					return this;
+				}
       };
 
       /*
@@ -23,9 +44,9 @@
       * Explain and rewrite the function to make it work properly
       */
 
-      const incrementer = function(){
-        setInterval(function() => {
-          this.increment();
+			const incrementer = (counter) => {
+        setInterval(() => {
+          counter.increment();
         }, 1000);
       }.call(new Counter());
 
@@ -47,13 +68,27 @@
 
       class NStepCounter extends Counter {
         constructor(step){
+					super();
           this.step = step;
         }
-        // Add code
+
+				increment () {
+					super.increment();
+
+					return this;
+				}
+
+				decrement () {
+					super.decrement();
+
+					return this;
+				}
       };
 
       // Instantiate a new `NStepCounter` with step set to `5` and perform operations on the instance
-      const problemTwoCounter = undefined;
+      const problemTwoCounter = new NStepCounter(5)
+				.increment()
+				.increment();
       console.log(problemTwoCounter.count === 10);
 
     </script>
